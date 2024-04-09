@@ -40,7 +40,10 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'flash' => [
-                'message'=> fn() => $request->session()->get('message'),
+                // flashのためのセッション情報なので、用が済んだらすぐに消去される
+                // 学習用：fnはPHPの無名関数のための記法。
+                'message' => fn () => $request->session()->get('message'),
+                'status' => fn () => $request->session()->get('status')
             ]
         ]);
     }

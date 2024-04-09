@@ -38,6 +38,7 @@ class InertiaTestController extends Controller
 
     public function store(Request $request)
     {
+
         // 学習用メモ。「required」や「max」はLaravelに予め備わっているもの。詳しくはググる。
         $request->validate([
             'title' => ['required', 'max:20'],

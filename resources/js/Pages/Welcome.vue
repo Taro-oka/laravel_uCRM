@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -13,7 +13,10 @@ console.log(props);
 
 <template>
     <Head title="Welcome" />
-    <Link href="/inertia-test">InertiaTestへGO</Link>
+    <!-- ↓409が出てから遷移する -->
+    <Link href="/inertia-test">Linkでいく</Link>
+    <!-- ↓正常に遷移する -->
+    <a href="/inertia-test" style="display: block">普通のアンカータグ</a>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
     >

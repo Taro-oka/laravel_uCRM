@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-
+import ValidateErrors from "../../Components/ValidateErrors.vue";
 // 学習用メモ これはLaravelが自動で返してくれうエラーオブジェクト！！
 defineProps({
     errors: Object,
@@ -13,12 +13,12 @@ const form = reactive({
 });
 
 const submitFunction = () => {
-    console.log("submit");
     Inertia.post("/inertia", form);
 };
 </script>
 
 <template>
+    <ValidateErrors :errors="errors"></ValidateErrors>
     <form @submit.prevent="submitFunction">
         <input type="text" name="title" v-model="form.title" /><br />
         <div v-if="errors.title">{{ errors.title }}</div>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import { Inertia } from "@inertiajs/inertia";
+import { Inertia } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
     id: String,
