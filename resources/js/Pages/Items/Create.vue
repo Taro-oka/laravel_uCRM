@@ -4,6 +4,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import ValidateErrors from "@/Components/ValidateErrors.vue";
+import FlashMessage from "@/Components/FlashMessage.vue";
 
 defineProps({ errors: Object });
 
@@ -36,6 +37,7 @@ const storeItem = () => {
                                             <ValidateErrors
                                                 :errors="errors"
                                             ></ValidateErrors>
+                                            <FlashMessage />
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label

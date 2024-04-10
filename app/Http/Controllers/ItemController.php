@@ -52,9 +52,9 @@ class ItemController extends Controller
                 ->with(['message' => '登録完了！', 'status' => 'success']);
         } catch (Throwable $e) {
             $err = $e->getMessage();
-            dump($err);
+            // dump($err);
             return back()->withInput()
-                ->with(['message' => '何かがおかしいようです。', 'status' => 'danger']);
+                ->with(['message' => '何かがおかしいようです。。。', 'status' => 'danger']);
         }
     }
 
