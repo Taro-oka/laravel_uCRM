@@ -6,10 +6,12 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CustomerController;
 
 // 学習用メモ
 // 'items'という部分は、resouceメソッドによって、適宜適切なURLに書き換えてくれる！
 Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
+Route::resource('customers', CustomerController::class)->middleware(['auth', 'verified']);
 
 // 学習用メモ
 // Route::getの第１引数は、pages内のパスである！！！コントローラーをかませて呼ぶことも多い！！（InertiaTestController）
