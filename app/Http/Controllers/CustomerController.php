@@ -18,7 +18,9 @@ class CustomerController extends Controller
     public function index()
     {
         // 学習用：Laravelの提供するモデルにはpagenateメソッドがあり、pageパラメータを読み取って、それに合うオブジェクトを返してくれる！！
-        $customers = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
+        // $customers = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
+        $customers = Customer::searchCustomers('タカハシ')->select('id', 'name', 'kana', 'tel')->paginate(50);
+        dd($customers);
         return Inertia::render('Customers/Index', ['customers' => $customers]);
     }
 

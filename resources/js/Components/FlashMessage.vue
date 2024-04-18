@@ -1,29 +1,25 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/inertia-vue3";
-const showStatus = () => {
+import { CLASS_MAP } from "@/Utils/classMap.js";
+
+const getStatus = () => {
     return usePage().props.value.flash.status ?? null;
 };
-const status = ref("");
+
 const dynamicClass = ref([]);
 
-const addClass = () => {
-    status.value = showStatus();
-    if (!status.value) {
+const updateDynamicClass = () => {
+    const status = getStatus();
+    if (!status) {
         return;
     }
-    let classStrings = "";
-    if (status.value === "success") {
-        classStrings = "bg-blue-300";
-    } else if (status.value === "danger") {
-        classStrings = "bg-red-300";
-    }
-    classStrings = classStrings.split(" ");
-    dynamicClass.value.push(...classStrings);
+
+    dynamicClass.value = [CLASS_MAP[status] || ""];
 };
 
 onMounted(() => {
-    addClass();
+    updateDynamicClass();
 });
 </script>
 
