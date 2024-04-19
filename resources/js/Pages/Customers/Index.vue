@@ -3,10 +3,17 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import FlashMessage from "@/Components/FlashMessage.vue";
 import Pagination from "@/Components/Pagination.vue";
+import { ref } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
 defineProps({
     customers: Object,
 });
+
+const search = ref("");
+const searchCustomers = () => {
+    Inertia.get(route("customers.index", { search: search.value }));
+};
 </script>
 
 <template>
@@ -26,26 +33,20 @@ defineProps({
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 py-8 mx-auto">
                                 <FlashMessage />
-                                <div
-                                    class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto"
-                                >
-                                    <a
-                                        class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
-                                        >Learn More
-                                        <svg
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            class="w-4 h-4 ml-2"
-                                            viewBox="0 0 24 24"
+                                <div class="flex my-4 lg:w-2/3 w-full mx-auto">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name="search"
+                                            v-model="search"
+                                        />
+                                        <button
+                                            class="bg-blue-300 text-white py-2 px-2 ml-2"
+                                            @click="searchCustomers"
                                         >
-                                            <path
-                                                d="M5 12h14M12 5l7 7-7 7"
-                                            ></path>
-                                        </svg>
-                                    </a>
+                                            検索
+                                        </button>
+                                    </div>
                                     <Link
                                         as="button"
                                         :href="route('customers.create')"

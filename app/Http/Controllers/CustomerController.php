@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CustomerController extends Controller
@@ -15,12 +16,12 @@ class CustomerController extends Controller
      *
      * @return \Inertia\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // 学習用：Laravelの提供するモデルにはpagenateメソッドがあり、pageパラメータを読み取って、それに合うオブジェクトを返してくれる！！
         // $customers = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
-        $customers = Customer::searchCustomers('タカハシ')->select('id', 'name', 'kana', 'tel')->paginate(50);
-        dd($customers);
+        $customers = Customer::searchCustomers($request->search)->select('id', 'name', 'kana', 'tel')->paginate(50);
+        // dd($customers);
         return Inertia::render('Customers/Index', ['customers' => $customers]);
     }
 
