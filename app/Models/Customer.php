@@ -9,6 +9,9 @@ class Customer extends Model
 {
     use HasFactory;
 
+    // 学習用：$fillableとは、データベース上で更新や追加を許可するかどうかのカラム名を書くもの。セキュリティ面対策である。
+    protected $fillable = ['name', 'kana', 'tel', 'email', 'postcode', 'address', 'birthday', 'gender', 'memo'];
+
     public function scopeSearchCustomers($query, $input = null)
     {
         if (!empty($input)) {
