@@ -1,9 +1,9 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
-const { links } = defineProps({
+const { links, searchVal } = defineProps({
     links: Array,
+    searchVal: String,
 });
-console.log(links);
 </script>
 
 <template>
@@ -17,7 +17,9 @@ console.log(links);
                 ></div>
                 <Link
                     v-else
-                    :href="link.url"
+                    :href="
+                        searchVal ? link.url + '&search=' + searchVal : link.url
+                    "
                     v-html="link.label"
                     class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
                     :class="{ 'bg-blue-700 text-white': link.active }"

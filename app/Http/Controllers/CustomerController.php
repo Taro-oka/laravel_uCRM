@@ -21,9 +21,13 @@ class CustomerController extends Controller
     {
         // 学習用：Laravelの提供するモデルにはpagenateメソッドがあり、pageパラメータを読み取って、それに合うオブジェクトを返してくれる！！
         // $customers = Customer::select('id', 'name', 'kana', 'tel')->paginate(50);
-        $customers = Customer::searchCustomers($request->search)->select('id', 'name', 'kana', 'tel')->paginate(50);
+        $search_val = $request->search;
+        $customers = Customer::searchCustomers($search_val)->select('id', 'name', 'kana', 'tel')->paginate(50);
         // dd($customers);
-        return Inertia::render('Customers/Index', ['customers' => $customers]);
+        return Inertia::render('Customers/Index', [
+            'customers' => $customers,
+            'search_val' => $search_val
+        ]);
     }
 
     /**

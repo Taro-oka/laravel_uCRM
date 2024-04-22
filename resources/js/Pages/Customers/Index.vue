@@ -6,8 +6,9 @@ import Pagination from "@/Components/Pagination.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
-defineProps({
+const { customers, search_val } = defineProps({
     customers: Object,
+    search_val: String,
 });
 
 const search = ref("");
@@ -114,7 +115,10 @@ const searchCustomers = () => {
                                     </table>
                                 </div>
                             </div>
-                            <Pagination :links="customers.links"></Pagination>
+                            <Pagination
+                                :links="customers.links"
+                                :search-val="search_val"
+                            ></Pagination>
                         </section>
                     </div>
                 </div>
